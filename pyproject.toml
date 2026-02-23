@@ -26,3 +26,12 @@ dev = [
     "pytest-asyncio>=1.3.0",
     "ruff>=0.15.2",
 ]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+select = ["E", "F", "I", "B", "UP", "ASYNC"]
+ignore = ["E501"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["app"]

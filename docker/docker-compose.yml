@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+    postgres:
+        image: postgres:16
+        container_name: cli_spotify_ai_postgress
+        restart: unless-stopped
+        environment:
+            POSTGRES_DB: spotify_ai
+            POSTGRES_USER: spotify_user
+            POSTGRES_PASSWORD: spotify_password
+        ports:
+            - "5433:5432"
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+
+volumes:
+    postgres_data:

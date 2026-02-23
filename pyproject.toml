@@ -35,3 +35,7 @@ ignore = ["E501"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["app"]
+
+[tool.black]
+line-length = 88
+target-version = "py312"

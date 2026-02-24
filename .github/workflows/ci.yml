@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: spotify_ai
+          POSTGRES_USER: spotify_user
+          POSTGRES_PASSWORD: spotify_password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U spotify_user"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    env:
+      DATABASE_URL: postgresql+asyncpg://spotify_user:spotify_password@localhost:5432/spotify_ai
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v1
+
+      - name: Setup Python
+        run: uv python install 3.12
+
+      - name: Install dependencies
+        run: uv sync --all-extras --dev
+
+      - name: Run Ruff
+        run: uv run ruff check .
+
+      - name: Check formatting (Black)
+        run: uv run black --check .
+
+      - name: Run MyPy
+        run: uv run mypy app
+
+      - name: Run tests
+        run: uv run pytest

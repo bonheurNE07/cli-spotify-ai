@@ -1,7 +1,8 @@
-from functools import lru_cache
-from pydantic import BaseModel
-from dotenv import load_dotenv
 import os
+from functools import lru_cache
+
+from dotenv import load_dotenv
+from pydantic import BaseModel
 
 load_dotenv()
 

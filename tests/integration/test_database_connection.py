@@ -1,6 +1,8 @@
 import pytest
 from sqlalchemy import text
+
 from app.infrastructure.database import engine
+
 
 @pytest.mark.asyncio
 async def test_database_connection() -> None:

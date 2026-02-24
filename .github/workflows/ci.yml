@@ -2,13 +2,9 @@ name: CI
 
 on:
   push:
-    branches:
-      - main
-      - develop
+    branches: [main, develop]
   pull_request:
-    branches:
-      - main
-      - develop
+    branches: [main, develop]
 
 jobs:
   build:
@@ -37,22 +33,22 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v1
+        uses: astral-sh/setup-uv@v5 # Updated to latest version
+        with:
+          version: "latest"
+          enable-cache: true # Speeds up subsequent runs
 
       - name: Setup Python
         run: uv python install 3.12
 
       - name: Install dependencies
-        run: uv sync --group dev
+        # 'uv sync' installs the project and all default + dev dependencies
+        run: uv sync --all-groups
 
-      - name: Run Ruff
-        run: uv run --group dev ruff check .
-
-      - name: Check formatting (Black)
-        run: uv run --group dev black --check .
-
-      - name: Run MyPy
-        run: uv run --group dev mypy app
-
-      - name: Run tests
-        run: uv run --group dev pytest
+      - name: Run Linting and Tests
+        # Using 'uv run' will automatically use the synced environment
+        run: |
+          uv run ruff check .
+          uv run black --check .
+          uv run mypy app
+          uv run pytest

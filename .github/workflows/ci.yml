@@ -46,13 +46,13 @@ jobs:
         run: uv sync --group dev
 
       - name: Run Ruff
-        run: uv run ruff check .
+        run: uv run --group dev ruff check .
 
       - name: Check formatting (Black)
-        run: uv run black --check .
+        run: uv run --group dev black --check .
 
       - name: Run MyPy
-        run: uv run mypy app
+        run: uv run --group dev mypy app
 
       - name: Run tests
-        run: uv run pytest
+        run: uv run --group dev pytest

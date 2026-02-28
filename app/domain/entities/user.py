@@ -1,8 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
-from typing import Optional
+from datetime import UTC, datetime
 from uuid import UUID, uuid4
 
 
@@ -12,17 +11,18 @@ class User:
     Pure Domain Entity representing a User.
     Separates internal identity (UUID) from external identity (Spotify ID).
     """
+
     spotify_id: str
     display_name: str
-    email: Optional[str] = None
-    country: Optional[str] = None
+    email: str | None = None
+    country: str | None = None
     id: UUID = field(default_factory=uuid4)
-    created_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
+    created_at: datetime = field(default_factory=lambda: datetime.now(UTC))
 
     def __post_init__(self) -> None:
         if not self.spotify_id.strip():
             raise ValueError("spotify_id cannot be empty")
-        
+
         if not self.display_name.strip():
             raise ValueError("display_name cannot be empty")
 

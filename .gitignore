@@ -1,1 +1,25 @@
+__ycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
 .env
+
+# Pytest cache
+.pytest_cache/
+
+# Mypy cache
+.mypy_cache/
+
+# Ruff cache
+.ruff_cache/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store

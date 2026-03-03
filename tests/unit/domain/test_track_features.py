@@ -2,6 +2,7 @@ import pytest
 
 from app.domain.value_objects.track_features import TrackFeatures
 
+
 def test_valid_track_features() -> None:
     features = TrackFeatures(
         danceability=0.5,
@@ -12,11 +13,12 @@ def test_valid_track_features() -> None:
         instrumentalness=0.0,
         liveness=0.2,
         valence=0.6,
-        tempo=120.0
+        tempo=120.0,
     )
     assert features.danceability == 0.5
     assert features.tempo == 120.0
-    
+
+
 def test_invalid_track_features() -> None:
     with pytest.raises(ValueError):
         TrackFeatures(
@@ -28,5 +30,5 @@ def test_invalid_track_features() -> None:
             instrumentalness=0.0,
             liveness=0.2,
             valence=0.6,
-            tempo=120.0
+            tempo=120.0,
         )

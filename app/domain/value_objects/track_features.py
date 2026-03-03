@@ -16,16 +16,14 @@ class TrackFeatures:
         for field_name in (
             "danceability",
             "energy",
-            "loudness",
             "speechiness",
             "acousticness",
             "instrumentalness",
             "liveness",
             "valence",
-            "tempo",
         ):
             value = getattr(self, field_name)
-            if not 0.0 <= value <= 1.0 and field_name != "tempo":
+            if not 0.0 <= value <= 1.0:
                 raise ValueError(f"{field_name} must be a number between 0.0 and 1.0")
         
         if self.tempo < 0:

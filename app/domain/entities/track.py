@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from app.domain.value_objects.track_features import TrackFeatures
+
 
 @dataclass(slots=True)
 class Track:
@@ -12,6 +14,7 @@ class Track:
     popularity: int
     album_name: str | None = None
     preview_url: str | None = None
+    features: TrackFeatures | None = None
 
     def __post_init__(self) -> None:
         if not self.id.strip():

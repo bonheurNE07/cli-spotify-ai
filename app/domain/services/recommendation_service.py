@@ -3,6 +3,7 @@ from abc import ABC, abstractmethod
 from app.domain.entities.track import Track
 from app.domain.value_objects.mood_profile import MoodProfile
 
+
 class RecommendationService(ABC):
     @abstractmethod
     def score_track(self, track: Track, mood: MoodProfile) -> float:
@@ -12,7 +13,7 @@ class RecommendationService(ABC):
         Higher scores indicate a better match.
         """
         raise NotImplementedError
-    
+
     @abstractmethod
     def rank_tracks(
         self,

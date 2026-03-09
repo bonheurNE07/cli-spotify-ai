@@ -23,7 +23,7 @@ class EuclideanScoringStrategy(TrackScoringStrategy):
         self.energy_weight = energy_weight / total
         self.valence_weight = valence_weight / total
         self.danceability_weight = danceability_weight / total
-        
+
     def score(
         self,
         mood: MoodProfile,
@@ -39,16 +39,14 @@ class EuclideanScoringStrategy(TrackScoringStrategy):
         dance_diff = features.danceability - mood.target_danceability
 
         weighted_distance = sqrt(
-        self.energy_weight * energy_diff**2 +
-        self.valence_weight * valence_diff**2 +
-        self.danceability_weight * dance_diff**2
-    )
+            self.energy_weight * energy_diff**2
+            + self.valence_weight * valence_diff**2
+            + self.danceability_weight * dance_diff**2
+        )
 
         max_distance = sqrt(
-        self.energy_weight +
-        self.valence_weight +
-        self.danceability_weight
-    )
+            self.energy_weight + self.valence_weight + self.danceability_weight
+        )
 
         similarity = 1 - (weighted_distance / max_distance)
 

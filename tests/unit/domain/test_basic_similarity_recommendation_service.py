@@ -2,9 +2,9 @@ from app.domain.entities.track import Track
 from app.domain.services.basic_similarity_recommendation_service import (
     BasicSimilarityRecommendationService,
 )
+from app.domain.services.euclidean_scoring_strategy import EuclideanScoringStrategy
 from app.domain.value_objects.mood_profile import MoodProfile
 from app.domain.value_objects.track_features import TrackFeatures
-from app.domain.services.euclidean_scoring_strategy import EuclideanScoringStrategy
 
 
 def test_rank_tracks_empty_list() -> None:

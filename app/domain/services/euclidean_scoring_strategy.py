@@ -3,6 +3,7 @@ from math import sqrt
 from app.domain.entities.track import Track
 from app.domain.services.track_scoring_strategy import TrackScoringStrategy
 from app.domain.value_objects.mood_profile import MoodProfile
+from app.domain.value_objects.recommendation_score import RecommendationScore
 
 
 class EuclideanScoringStrategy(TrackScoringStrategy):
@@ -28,7 +29,7 @@ class EuclideanScoringStrategy(TrackScoringStrategy):
         self,
         mood: MoodProfile,
         track: Track,
-    ) -> float:
+    ) -> RecommendationScore:
         if track.features is None:
             raise ValueError("Track must contain features for scoring")
 
@@ -50,4 +51,4 @@ class EuclideanScoringStrategy(TrackScoringStrategy):
 
         similarity = 1 - (weighted_distance / max_distance)
 
-        return similarity
+        return RecommendationScore(similarity)

@@ -2,6 +2,7 @@ from app.domain.entities.track import Track
 from app.domain.services.recommendation_service import RecommendationService
 from app.domain.services.track_scoring_strategy import TrackScoringStrategy
 from app.domain.value_objects.mood_profile import MoodProfile
+from app.domain.value_objects.recommendation_score import RecommendationScore
 
 
 class BasicSimilarityRecommendationService(RecommendationService):
@@ -15,7 +16,7 @@ class BasicSimilarityRecommendationService(RecommendationService):
         self,
         track: Track,
         mood: MoodProfile,
-    ) -> float:
+    ) -> RecommendationScore:
         return self._scoring_strategy.score(mood, track)
 
     def rank_tracks(

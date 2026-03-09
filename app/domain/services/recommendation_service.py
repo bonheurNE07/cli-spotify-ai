@@ -2,11 +2,12 @@ from abc import ABC, abstractmethod
 
 from app.domain.entities.track import Track
 from app.domain.value_objects.mood_profile import MoodProfile
+from app.domain.value_objects.recommendation_score import RecommendationScore
 
 
 class RecommendationService(ABC):
     @abstractmethod
-    def score_track(self, track: Track, mood: MoodProfile) -> float:
+    def score_track(self, track: Track, mood: MoodProfile) -> RecommendationScore:
         """
         Calculate a score for how well a track matches a given mood profile.
 

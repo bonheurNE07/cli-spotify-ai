@@ -43,7 +43,7 @@ def test_score_is_within_range(strategy: EuclideanScoringStrategy):
 
     score = strategy.score(mood, track)
 
-    assert 0.0 <= score <= 1.0
+    assert 0.0 <= score.value <= 1.0
 
 
 def test_perfect_match_returns_one(strategy: EuclideanScoringStrategy):
@@ -76,7 +76,7 @@ def test_perfect_match_returns_one(strategy: EuclideanScoringStrategy):
 
     score = strategy.score(mood, track)
 
-    assert score == pytest.approx(1.0)
+    assert score.value == pytest.approx(1.0)
 
 
 def test_worst_match_returns_zero(strategy: EuclideanScoringStrategy):
@@ -108,4 +108,4 @@ def test_worst_match_returns_zero(strategy: EuclideanScoringStrategy):
     )
 
     score = strategy.score(mood, track)
-    assert score == pytest.approx(0.0)
+    assert score.value == pytest.approx(0.0)

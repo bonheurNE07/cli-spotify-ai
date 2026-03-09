@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 
 from app.domain.entities.track import Track
 from app.domain.value_objects.mood_profile import MoodProfile
+from app.domain.value_objects.recommendation_score import RecommendationScore
 
 
 class TrackScoringStrategy(ABC):
@@ -10,7 +11,7 @@ class TrackScoringStrategy(ABC):
         self,
         mood: MoodProfile,
         track: Track,
-    ) -> float:
+    ) -> RecommendationScore:
         """
         Return similarity score between 0.0 and 1.0.
         """

@@ -70,4 +70,4 @@ def test_score_range() -> None:
 
     score = service.score_track(track, mood)
 
-    assert 0.0 <= score <= 1.0
+    assert 0.0 <= score.value <= 1.0

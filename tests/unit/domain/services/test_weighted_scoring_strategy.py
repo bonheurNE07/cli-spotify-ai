@@ -42,7 +42,7 @@ def test_energy_weight_dominates():
 
     score = strategy.score(mood, track)
 
-    assert score < 0.5
+    assert score.value < 0.5
 
 
 def test_extreme_weights():

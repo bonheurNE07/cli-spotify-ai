@@ -20,11 +20,7 @@ class EuclideanScoringStrategy(TrackScoringStrategy):
         valence_diff = features.valence - mood.target_valence
         dance_diff = features.danceability - mood.target_danceability
 
-        distance = sqrt(
-            energy_diff**2 +
-            valence_diff**2 +
-            dance_diff**2
-        )
+        distance = sqrt(energy_diff**2 + valence_diff**2 + dance_diff**2)
 
         max_distance = sqrt(3)
 

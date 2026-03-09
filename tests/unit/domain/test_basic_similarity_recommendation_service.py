@@ -4,10 +4,12 @@ from app.domain.services.basic_similarity_recommendation_service import (
 )
 from app.domain.value_objects.mood_profile import MoodProfile
 from app.domain.value_objects.track_features import TrackFeatures
+from app.domain.services.euclidean_scoring_strategy import EuclideanScoringStrategy
 
 
 def test_rank_tracks_empty_list() -> None:
-    service = BasicSimilarityRecommendationService()
+    strategy = EuclideanScoringStrategy()
+    service = BasicSimilarityRecommendationService(strategy)
     mood = MoodProfile(target_energy=0.5, target_valence=0.5, target_danceability=0.5)
     ranked = service.rank_tracks(mood, [])
 
@@ -36,8 +38,8 @@ def create_track(energy: float, valence: float, danceability: float) -> Track:
 
 
 def test_rank_tracks_orders_by_similarity() -> None:
-    service = BasicSimilarityRecommendationService()
-
+    strategy = EuclideanScoringStrategy()
+    service = BasicSimilarityRecommendationService(strategy)
     mood = MoodProfile(target_energy=0.8, target_valence=0.8, target_danceability=0.8)
 
     perfect_match = create_track(0.8, 0.8, 0.8)  # Perfect match
@@ -55,7 +57,8 @@ def test_rank_tracks_orders_by_similarity() -> None:
 
 
 def test_score_range() -> None:
-    service = BasicSimilarityRecommendationService()
+    strategy = EuclideanScoringStrategy()
+    service = BasicSimilarityRecommendationService(strategy)
 
     mood = MoodProfile(
         target_energy=0.0,

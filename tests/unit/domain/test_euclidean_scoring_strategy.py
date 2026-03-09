@@ -24,7 +24,7 @@ def test_score_is_within_range(strategy: EuclideanScoringStrategy):
         energy=0.2,
         valence=0.7,
         danceability=0.9,
-        acousticness=0.0,   
+        acousticness=0.0,
         instrumentalness=0.0,
         liveness=0.0,
         speechiness=0.0,

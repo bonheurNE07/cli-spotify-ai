@@ -1,5 +1,3 @@
-from typing import List
-
 from app.domain.entities.track import Track
 from app.domain.services.recommendation_service import RecommendationService
 from app.domain.services.track_scoring_strategy import TrackScoringStrategy
@@ -23,15 +21,12 @@ class BasicSimilarityRecommendationService(RecommendationService):
     def rank_tracks(
         self,
         mood: MoodProfile,
-        tracks: List[Track],
-    ) -> List[Track]:
+        tracks: list[Track],
+    ) -> list[Track]:
         if not tracks:
             return []
 
-        scored_tracks = [
-            (track, self.score_track(track, mood))
-            for track in tracks
-        ]
+        scored_tracks = [(track, self.score_track(track, mood)) for track in tracks]
 
         scored_tracks.sort(
             key=lambda x: x[1],
